@@ -1,19 +1,20 @@
 package org.fastcampus.user.domain;
 
 import java.util.Objects;
+import org.fastcampus.common.domain.PositiveIntgerCounter;
 
 public class User {
 
     private final Long id;
     private final UserInfo info;
-    private final UesrRelationCounter followingCounter;
-    private final UesrRelationCounter followerCounter;
+    private final PositiveIntgerCounter followingCounter;
+    private final PositiveIntgerCounter followerCounter;
 
     public User(Long id, UserInfo userInfo) {
         this.id = id;
         this.info = userInfo;
-        this.followingCounter = new UesrRelationCounter();
-        this.followerCounter = new UesrRelationCounter();
+        this.followingCounter = new PositiveIntgerCounter();
+        this.followerCounter = new PositiveIntgerCounter();
     }
 
     public void follow(User targetUser) {

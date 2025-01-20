@@ -1,28 +1,37 @@
-package org.fastcampus.post.domain;
+package org.fastcampus.post.domain.comment;
 
 import org.fastcampus.common.domain.PositiveIntgerCounter;
-import org.fastcampus.post.domain.content.PostContent;
-import org.fastcampus.post.domain.content.PostPublicationState;
+import org.fastcampus.post.domain.Post;
+import org.fastcampus.post.domain.content.Content;
 import org.fastcampus.user.domain.User;
 
-public class Post {
+public class Comment {
 
     private final Long id;
+    private final Post post;
     private final User author;
-    private final PostContent content;
+    private final Content content;
     private final PositiveIntgerCounter likeCounter;
-    private PostPublicationState state;
 
-    public Post(Long id, User author, PostContent content) {
+
+    public Comment(Long id, Post post, User author, Content content) {
         if (author == null) {
             throw new IllegalArgumentException();
         }
 
+        if (post == null) {
+            throw new IllegalArgumentException();
+        }
+
+        if (content == null) {
+            throw new IllegalArgumentException();
+        }
+
         this.id = id;
+        this.post = post;
         this.author = author;
         this.content = content;
         this.likeCounter = new PositiveIntgerCounter();
-        this.state = PostPublicationState.PUBLIC;
     }
 
     public void like(User user) {
@@ -36,12 +45,11 @@ public class Post {
         likeCounter.decrease();
     }
 
-    public void updatePost(User user, String updateContent, PostPublicationState state) {
-        if(!this.author.equals(user)) {
+    public void updateComment(User user, String updateContent) {
+        if (!this.author.equals(user)) {
             throw new IllegalArgumentException();
         }
 
-        this.state = state;
         this.content.updateContent(updateContent);
     }
 }
