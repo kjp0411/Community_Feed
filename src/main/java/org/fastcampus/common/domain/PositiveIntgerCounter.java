@@ -18,4 +18,7 @@ public class PositiveIntgerCounter {
         this.count--;
     }
 
+    public int getCount() {
+        return count;
+    }
 }
