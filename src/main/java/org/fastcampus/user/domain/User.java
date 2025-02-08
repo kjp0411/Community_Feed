@@ -75,4 +75,16 @@ public class User {
     public int followingCount() {
         return followingCounter.getCount();
     }
+
+    public UserInfo getInfo() {
+        return info;
+    }
+
+    public PositiveIntgerCounter getFollowingCounter() {
+        return followingCounter;
+    }
+
+    public PositiveIntgerCounter getFollowerCounter() {
+        return followerCounter;
+    }
 }
